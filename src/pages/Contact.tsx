@@ -15,16 +15,67 @@ const Contact = () => (
       <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background" />
       <div className="relative z-10 text-center px-6">
         <Mail className="mx-auto mb-4 text-primary" size={32} />
-        <h2 className="text-xl font-semibold mb-2">Email</h2>
-        <p className="text-muted-foreground mb-4">
-          Our online courses starting soon, please contact for details:
+        <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
+        <p className="text-muted-foreground mb-6">
+          Our online courses are starting soon. Send us a message and we'll get back to you.
         </p>
-        <a
-          href="mailto:orsi.hajas@gmail.com?subject=Contact%20us%20for%20details"
-          className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+      </div>
+    </section>
+
+    {/* Contact Form */}
+    <section className="py-16 px-6">
+      <div className="max-w-xl mx-auto">
+        <form
+          action="https://formspree.io/f/intissue"
+          method="POST"
+          className="space-y-5"
         >
-          orsi.hajas@gmail.com
-        </a>
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="name" className="text-sm font-medium">
+              Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              required
+              placeholder="Your name"
+              className="border border-border rounded-md px-4 py-2.5 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="email" className="text-sm font-medium">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              placeholder="your@email.com"
+              className="border border-border rounded-md px-4 py-2.5 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="message" className="text-sm font-medium">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows={5}
+              placeholder="How can we help you?"
+              className="border border-border rounded-md px-4 py-2.5 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full px-6 py-3 border border-primary text-primary text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+          >
+            Send Message
+          </button>
+        </form>
       </div>
     </section>
 
