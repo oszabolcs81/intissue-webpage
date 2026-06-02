@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Contact = () => (
   <Layout>
@@ -68,6 +69,25 @@ const Contact = () => (
               className="border border-border rounded-md px-4 py-2.5 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
             />
           </div>
+          {/* GDPR consent */}
+          <div className="flex items-start gap-3">
+            <input
+              id="consent"
+              type="checkbox"
+              name="consent"
+              required
+              className="mt-0.5 shrink-0 accent-primary"
+            />
+            <label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed">
+              I have read and accept the{" "}
+              <Link to="/legal" className="underline hover:text-foreground">
+                Privacy Policy
+              </Link>
+              . I consent to my name, e-mail address and message being processed for the purpose
+              of responding to my enquiry, in accordance with GDPR Art. 6(1)(b)/(f).
+            </label>
+          </div>
+
           <button
             type="submit"
             className="w-full px-6 py-3 border border-primary text-primary text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
