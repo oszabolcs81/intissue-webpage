@@ -100,8 +100,8 @@ const Videos = () => {
           {active && (
             <iframe
               key={active.youtubeId}
-              src={`https://www.youtube.com/embed/${active.youtubeId}?autoplay=1`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              src={`https://www.youtube.com/embed/${active.youtubeId}`}
+              allow="clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full aspect-video bg-black"
             />
