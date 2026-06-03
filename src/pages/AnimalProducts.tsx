@@ -100,21 +100,49 @@ const AnimalProducts = () => {
             {open === "order" ? <ChevronUp className="w-5 h-5 text-muted-foreground" /> : <ChevronDown className="w-5 h-5 text-muted-foreground" />}
           </button>
           {open === "order" && (
-            <div className="px-6 py-8 border-t border-border space-y-4 text-sm text-muted-foreground">
-              <div>
-                <p className="font-semibold text-foreground mb-1">Contact</p>
-                <p>Email: <a href="mailto:info@intissue.com" className="text-primary underline underline-offset-4">info@intissue.com</a></p>
-                <p>Phone: <a href="tel:+36704511173" className="text-primary underline underline-offset-4">+36 70 451 1173</a></p>
-              </div>
-              <div>
-                <p className="font-semibold text-foreground mb-1">How to place an order</p>
-                <p>Use the catalogue # and/or product name with quantity.</p>
-              </div>
-              <div>
-                <p className="font-semibold text-foreground mb-1">Storage</p>
-                <p>All grafts are freeze-dried and sterilized. They can be stored at room temperature for 5 years. Protect from direct sunlight.</p>
-              </div>
-              <p>When inquiring, please include the best contact details for orders and billing.</p>
+            <div className="px-6 py-8 border-t border-border text-sm text-muted-foreground">
+              <p className="text-foreground font-semibold mb-4">Order Inquiry Form</p>
+              <p className="mb-6">Please fill in the form below and we will get back to you shortly.</p>
+              <form action="https://formspree.io/f/REPLACE_WITH_ID" method="POST" className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold mb-1 text-foreground">Name / Clinic *</label>
+                    <input type="text" name="name" required className="w-full border border-border rounded-sm px-3 py-2 bg-background text-foreground text-sm focus:outline-none focus:border-foreground/40" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold mb-1 text-foreground">Email *</label>
+                    <input type="email" name="email" required className="w-full border border-border rounded-sm px-3 py-2 bg-background text-foreground text-sm focus:outline-none focus:border-foreground/40" />
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold mb-1 text-foreground">Country</label>
+                    <input type="text" name="country" className="w-full border border-border rounded-sm px-3 py-2 bg-background text-foreground text-sm focus:outline-none focus:border-foreground/40" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold mb-1 text-foreground">Product of interest *</label>
+                    <select name="product" required className="w-full border border-border rounded-sm px-3 py-2 bg-background text-foreground text-sm focus:outline-none focus:border-foreground/40">
+                      <option value="">Select product...</option>
+                      <option value="BMG - Bone Matrix Gelatin (equine)">BMG - Bone Matrix Gelatin (equine)</option>
+                      <option value="Corticocancellous chips (canine)">Corticocancellous chips (canine)</option>
+                      <option value="Corticocancellous chips (equine)">Corticocancellous chips (equine)</option>
+                      <option value="Specialty grafts (equine)">Specialty grafts (equine)</option>
+                      <option value="Multiple products">Multiple products</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold mb-1 text-foreground">Quantity / Size needed</label>
+                  <input type="text" name="quantity" placeholder="e.g. 3x 5cc BMG" className="w-full border border-border rounded-sm px-3 py-2 bg-background text-foreground text-sm focus:outline-none focus:border-foreground/40" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold mb-1 text-foreground">Message</label>
+                  <textarea name="message" rows={3} className="w-full border border-border rounded-sm px-3 py-2 bg-background text-foreground text-sm focus:outline-none focus:border-foreground/40 resize-none" />
+                </div>
+                <button type="submit" className="border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all">
+                  Send Inquiry
+                </button>
+              </form>
             </div>
           )}
         </div>
