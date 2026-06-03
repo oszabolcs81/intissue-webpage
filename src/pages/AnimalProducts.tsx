@@ -103,7 +103,7 @@ const AnimalProducts = () => {
             <div className="px-6 py-8 border-t border-border text-sm text-muted-foreground">
               <p className="text-foreground font-semibold mb-4">Order Inquiry Form</p>
               <p className="mb-6">Please fill in the form below and we will get back to you shortly.</p>
-              <form action="https://formspree.io/f/REPLACE_WITH_ID" method="POST" className="space-y-4">
+              <form action="https://formspree.io/f/mlgkrzpw" method="POST" className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold mb-1 text-foreground">Name / Clinic *</label>
