@@ -1,93 +1,87 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 
+const advantages = [
+  "Reduced OR time and reduces costs",
+  "Minimal intraoperative blood loss",
+  "Elimination of donor-site morbidity",
+  "Autologous harvest sites are frequently limited",
+  "Available in customizable quantities and structural forms",
+  "Accelerated healing and osseointegration",
+  "Studies show that allografts are as effective as autograft in bone healing",
+];
+
+const cards = [
+  { label: "Human Treatment", img: "/images/human_treatment.jpg", path: "/videos" },
+  { label: "Animal Treatment", img: "/images/animal_treatment.jpg", path: "/animal" },
+  { label: "Tati the Dog", img: "/images/tati_dog.jpg", path: "/videos" },
+];
+
 const Index = () => (
   <Layout>
-    {/* Hero */}
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-40"
-        style={{
-          backgroundImage: "url(/images/hero_banner.jpg)",
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/60 to-background" />
-      <div className="relative z-10 text-center px-6 max-w-3xl">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-          Meet our Intelligent<br />
-          <span className="text-primary">tissue solution</span>
-        </h1>
-        <p className="text-muted-foreground text-lg mb-8">
+    {/* Compact Hero */}
+    <section
+      className="relative flex items-center justify-center"
+      style={{ minHeight: "38vh", backgroundImage: "url('/images/hero_banner.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+      <div className="relative text-center px-6 py-12">
+        <h1 className="text-4xl md:text-6xl font-bold mb-3">Meet our Intelligent tissue solution</h1>
+        <p className="text-muted-foreground max-w-xl mx-auto">
           Our courses are coming soon.{" "}
-          <Link to="/contact" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
-            Contact us for details
-          </Link>
+          <Link to="/contact" className="text-primary underline underline-offset-4">Contact us</Link>{" "}
+          for more information.
         </p>
+      </div>
+    </section>
+
+    {/* Explore Cards */}
+    <section className="px-6 py-10">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
+        {cards.map((card) => (
+          <Link key={card.label} to={card.path} className="group relative overflow-hidden rounded-sm aspect-video block">
+            <img
+              src={card.img}
+              alt={card.label}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-5">
+              <p className="text-xs uppercase tracking-widest text-primary mb-1">Explore</p>
+              <h3 className="text-lg font-semibold">{card.label}</h3>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+
+    {/* Advantages */}
+    <section className="px-6 pb-14">
+      <div className="max-w-4xl mx-auto border border-border rounded-sm p-8 md:p-10">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6">Advantages of utilizing banked bone</h2>
+        <ul className="space-y-3">
+          {advantages.map((adv) => (
+            <li key={adv} className="flex items-start gap-3">
+              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+              <span className="text-muted-foreground">{adv}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 
     {/* About */}
-    <section className="py-20 px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-6">About</h2>
-        <p className="text-muted-foreground text-lg leading-relaxed">
+    <section className="px-6 pb-24 text-center">
+      <div className="max-w-2xl mx-auto">
+        <p className="text-muted-foreground mb-6">
           Learning a revolutionary new technology from the best, from the comfort of your home.
         </p>
         <Link
           to="/videos"
-          className="inline-block mt-8 px-8 py-3 border border-primary text-primary text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+          className="inline-block border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all"
         >
-          Learn More
+          Find out more
         </Link>
-      </div>
-    </section>
-
-    {/* Explore cards */}
-    <section className="py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <p className="text-center text-muted-foreground italic text-lg mb-12">
-          All great things have small beginnings
-        </p>
-        <div className="grid md:grid-cols-3 gap-6">
-          <Link to="/videos" className="group relative overflow-hidden aspect-[3/4]">
-            <img
-              src="/images/human_treatment.jpg"
-              alt="Human treatment surgery"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <p className="text-xs tracking-widest uppercase text-muted-foreground mb-2">Explore</p>
-              <h3 className="text-xl font-semibold">Human Treatment</h3>
-            </div>
-          </Link>
-
-          <Link to="/videos" className="group relative overflow-hidden aspect-[3/4] md:col-span-1 md:row-span-1">
-            <img
-              src="/images/animal_treatment.jpg"
-              alt="Animal treatment at the vet"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <p className="text-xs tracking-widest uppercase text-muted-foreground mb-2">Explore</p>
-              <h3 className="text-xl font-semibold">Animal Treatment</h3>
-            </div>
-          </Link>
-
-          <Link to="/videos" className="group relative overflow-hidden aspect-[3/4]">
-            <img
-              src="/images/tati_dog.jpg"
-              alt="Tati the dog"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <p className="text-xs tracking-widest uppercase text-muted-foreground mb-2">Explore</p>
-              <h3 className="text-xl font-semibold">Tati the Dog</h3>
-            </div>
-          </Link>
-        </div>
       </div>
     </section>
   </Layout>
