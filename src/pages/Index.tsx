@@ -1,86 +1,96 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
+import { Clock, Droplet, ShieldCheck, Layers, Activity, BadgeCheck, ArrowRight } from "lucide-react";
 
 const advantages = [
-  "Reduced OR time and reduces costs",
-  "Minimal intraoperative blood loss",
-  "Elimination of donor-site morbidity",
-  "Autologous harvest sites are frequently limited",
-  "Available in customizable quantities and structural forms",
-  "Accelerated healing and osseointegration",
-  "Studies show that allografts are as effective as autograft in bone healing",
+  { icon: Clock, title: "Reduced OR Time", text: "Ready-to-use grafts cut operating time and overall procedure costs." },
+  { icon: Droplet, title: "Minimal Blood Loss", text: "No second surgical site means significantly less intraoperative bleeding." },
+  { icon: ShieldCheck, title: "No Donor-Site Morbidity", text: "Eliminates the pain and complications of harvesting autologous bone." },
+  { icon: Layers, title: "Customizable Forms", text: "Available in tailored quantities, particle sizes and structural blocks." },
+  { icon: Activity, title: "Accelerated Healing", text: "Osteoinductive properties drive rapid osseointegration and remodeling." },
+  { icon: BadgeCheck, title: "Clinically Proven", text: "Studies show allografts perform on par with autograft in bone healing." },
 ];
 
 const cards = [
-  { label: "Human Treatment", img: "/images/human_treatment.jpg", path: "/videos" },
-  { label: "Animal Treatment", img: "/images/animal_treatment.jpg", path: "/animal" },
-  { label: "Tati the Dog", img: "/images/tati_dog.jpg", path: "/videos" },
+  { label: "Human Treatment", img: "/images/human_treatment.jpg", path: "/videos", badge: null },
+  { label: "Animal Treatment", img: "/images/animal_treatment.jpg", path: "/animal", badge: "Products & Info" },
+  { label: "Tati the Dog", img: "/images/tati_dog.jpg", path: "/videos", badge: null },
 ];
 
 const Index = () => (
   <Layout>
-    {/* Compact Hero */}
+    {/* Hero */}
     <section
       className="relative flex items-center justify-center"
-      style={{ minHeight: "38vh", backgroundImage: "url('/images/hero_banner.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+      style={{ minHeight: "42vh", backgroundImage: "url('/images/hero_banner.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
-      <div className="relative text-center px-6 py-12">
-        <h1 className="text-4xl md:text-6xl font-bold mb-3">Meet our Intelligent tissue solution</h1>
+      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/45 to-background" />
+      <div className="relative text-center px-6 py-14 max-w-3xl">
+        <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">Intelligent Tissue Solutions</p>
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">Advanced bone grafts for human &amp; veterinary care</h1>
         <p className="text-muted-foreground max-w-xl mx-auto">
-          Our courses are coming soon.{" "}
-          <Link to="/contact" className="text-primary underline underline-offset-4">Contact us</Link>{" "}
-          for more information.
+          Freeze-dried, sterilized allografts engineered for predictable regeneration.{" "}
+          <Link to="/contact" className="text-primary underline underline-offset-4">Get in touch</Link>.
         </p>
       </div>
     </section>
 
     {/* Explore Cards */}
-    <section className="px-6 py-10">
+    <section className="px-6 py-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
         {cards.map((card) => (
-          <Link key={card.label} to={card.path} className="group relative overflow-hidden rounded-sm aspect-video block">
-            <img
-              src={card.img}
-              alt={card.label}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 p-5">
-              <p className="text-xs uppercase tracking-widest text-primary mb-1">Explore</p>
-              <h3 className="text-lg font-semibold">{card.label}</h3>
+          <Link key={card.label} to={card.path} className="group relative overflow-hidden rounded-md aspect-[4/5] md:aspect-video block">
+            <img src={card.img} alt={card.label} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+            {card.badge && (
+              <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-[11px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg">
+                {card.badge}
+                <ArrowRight className="w-3 h-3" />
+              </span>
+            )}
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <h3 className="text-xl font-semibold mb-1">{card.label}</h3>
+              <span className="inline-flex items-center gap-1.5 text-sm text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                {card.badge ? "Explore products" : "Watch videos"} <ArrowRight className="w-4 h-4" />
+              </span>
             </div>
           </Link>
         ))}
       </div>
     </section>
 
-    {/* Advantages */}
-    <section className="px-6 pb-14">
-      <div className="max-w-4xl mx-auto border border-border rounded-sm p-8 md:p-10">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-6">Advantages of utilizing banked bone</h2>
-        <ul className="space-y-3">
-          {advantages.map((adv) => (
-            <li key={adv} className="flex items-start gap-3">
-              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-              <span className="text-muted-foreground">{adv}</span>
-            </li>
+    {/* Advantages - sophisticated grid */}
+    <section className="px-6 py-16 bg-muted/10 border-y border-border">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <p className="text-xs uppercase tracking-[0.3em] text-primary mb-3">Why Banked Bone</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">The advantages of allograft tissue</h2>
+          <p className="text-muted-foreground">
+            Our processed bone grafts give surgeons a safe, effective and convenient alternative to autologous harvesting.
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {advantages.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="group p-6 rounded-md border border-border bg-background hover:border-primary/50 hover:shadow-lg transition-all duration-300">
+              <div className="w-11 h-11 rounded-md bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <Icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
+              </div>
+              <h3 className="font-semibold mb-2">{title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
 
-    {/* About */}
-    <section className="px-6 pb-24 text-center">
+    {/* About / CTA */}
+    <section className="px-6 py-20 text-center">
       <div className="max-w-2xl mx-auto">
-        <p className="text-muted-foreground mb-6">
-          Learning a revolutionary new technology from the best, from the comfort of your home.
+        <p className="text-muted-foreground mb-6 text-lg">
+          Learn a revolutionary new technology from the best &mdash; from the comfort of your home.
         </p>
-        <Link
-          to="/videos"
-          className="inline-block border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all"
-        >
-          Find out more
+        <Link to="/videos" className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all">
+          Explore our work <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
     </section>
