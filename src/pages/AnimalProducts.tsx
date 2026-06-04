@@ -29,13 +29,40 @@ const products = [
     description: "Primarily structural grafts, suitable for restoring bone integrity and biomechanics. Within the same species, they undergo complete remodeling — cancellous components remodel more rapidly, cortical bone more slowly.",
     indications: null,
     available: [
-      "Cancellous blocks: 1 cc (10×10×10 mm), 2 cc (30×10×10 mm), 5 cc (50×10×10 mm)",
+      "Cancellous blocks: 1 cc (10×10×10 mm), 3 cc (30×10×10 mm), 5 cc (50×10×10 mm)",
       "Corticocancellous blocks: 1 cc (10×10×10 mm), 2 cc (20×10×10 mm)",
       "Custom or oversized dimensions available on request",
     ],
     note: "SUITABLE FOR HORSE, DOG, CAT and other species",
   },
 ];
+
+const catalog = [
+  { id: 1, name: "BMG (EQUINE)", size: "FINE", pack: "1 CC", group: "bmg" },
+  { id: 2, name: "BMG (EQUINE)", size: "ULTRAFINE", pack: "1 CC", group: "bmg" },
+  { id: 3, name: "BMG (EQUINE)", size: "FINE", pack: "3 CC", group: "bmg" },
+  { id: 4, name: "BMG (EQUINE)", size: "ULTRAFINE", pack: "3 CC", group: "bmg" },
+  { id: 5, name: "BMG (EQUINE)", size: "FINE", pack: "5 CC", group: "bmg" },
+  { id: 6, name: "BMG (EQUINE)", size: "ULTRAFINE", pack: "5 CC", group: "bmg" },
+  { id: 7, name: "CORTICOCANCELLOUS CHIPS (CANINE)", size: "FINE", pack: "1 CC", group: "chips" },
+  { id: 8, name: "CORTICOCANCELLOUS CHIPS (EQUINE)", size: "MEDIUM", pack: "1 CC", group: "chips" },
+  { id: 9, name: "CORTICOCANCELLOUS CHIPS (CANINE)", size: "FINE", pack: "3 CC", group: "chips" },
+  { id: 10, name: "CORTICOCANCELLOUS CHIPS (EQUINE)", size: "MEDIUM", pack: "3 CC", group: "chips" },
+  { id: 11, name: "CORTICOCANCELLOUS CHIPS (CANINE)", size: "FINE", pack: "5 CC", group: "chips" },
+  { id: 12, name: "CORTICOCANCELLOUS CHIPS (EQUINE)", size: "MEDIUM", pack: "5 CC", group: "chips" },
+  { id: 13, name: "CANCELLOUS BLOCK (EQUINE)", size: "10×10×10 MM", pack: "1 CC", group: "block" },
+  { id: 14, name: "CANCELLOUS BLOCK (EQUINE)", size: "30×10×10 MM", pack: "3 CC", group: "block" },
+  { id: 15, name: "CANCELLOUS BLOCK (EQUINE)", size: "50×10×10 MM", pack: "5 CC", group: "block" },
+  { id: 16, name: "CORTICOCANCELLOUS BLOCK (EQUINE)", size: "20×10×10 MM", pack: "1 CC", group: "ccblock" },
+  { id: 17, name: "CORTICOCANCELLOUS BLOCK (EQUINE)", size: "10×10×10 MM", pack: "2 CC", group: "ccblock" },
+];
+
+const rowClass: Record<string, string> = {
+  bmg: "bg-primary/10",
+  chips: "bg-emerald-900/20",
+  block: "bg-blue-900/20",
+  ccblock: "bg-cyan-900/20",
+};
 
 const scientific = [
   { term: "Osteoconductive", def: "Acts as a scaffold into which fibroblasts and capillaries from the host tissue can grow." },
@@ -45,29 +72,34 @@ const scientific = [
 ];
 
 const packageInsert = `CIRCULATOR:
-1. Remove the Transplant Record and peel pouch containing the graft from the outer pouch. Everything inside the peel pouch is considered sterile.
+1. Remove the Transplant Record and peel pouch from the outer pouch. Everything inside is considered sterile.
 2. Inspect the pouch. If damaged, consider the graft unsterile.
-3. Using sterile technique, peel the pouch open and present the sterile innermost vacuum-sealed pouch to a sterile team member.
-4. Complete the Transplant Record, return a copy to InTissue, retain a copy for patient records.
+3. Peel open and present the innermost vacuum-sealed pouch to a sterile team member.
+4. Complete the Transplant Record; return a copy to InTissue, retain a copy for patient records.
 
 STERILE TEAM MEMBER OR SURGEON:
 5. Tear open the innermost pouch and remove the graft.
-6. Obtain a few milliliters of blood and/or sterile physiologic solution for rehydration. Typically surgical area provides sufficient blood.
-7. To rehydrate (if necessary): Add sufficient blood/rehydration solution to minimally cover the graft. Minimal waiting for particulate grafts; 5–10 minutes for larger grafts.
-8. Aspirate or decant excess liquid. Combine graft with patient blood or bone marrow. May be mixed with autograft. Ensure implantation in a site with good vascular access.
+6. Obtain blood and/or sterile physiologic solution for rehydration. Surgical area typically provides sufficient blood.
+7. To rehydrate (if necessary): Add solution to minimally cover the graft. Minimal waiting for particulate grafts; 5–10 min for larger grafts.
+8. Aspirate or decant excess liquid. Combine with patient blood or bone marrow. Ensure implantation in a site with good vascular access.
 
-INDICATIONS: May be used wherever bone graft is needed — periodontic, orthopedic, neurosurgical and other reconstructive surgeries. Single-patient, single-occasion use only.
+INDICATIONS: May be used wherever bone graft is needed — periodontic, orthopedic, neurosurgical and other surgeries. Single-patient, single-occasion use only.
 
 CONTRAINDICATIONS: Not for use in human patients. Do not re-sterilize. Do not implant into a site with active or latent infection. Report adverse outcomes promptly to InTissue.
 
-STORAGE: Room temperature, up to 5 years from packaging date. Protect from heat above 45°C. After opening: implant promptly or refrigerate in sealed container; discard if unused after 6 hours.
+STORAGE: Room temperature, up to 5 years. Protect from heat above 45°C. After opening: implant promptly or refrigerate; discard if unused after 6 hours.
 
 Manufactured by InTissue (Hisztolabor Ltd), 2 Kocsag, Győr, Hungary 9026 | www.intissue.com`;
 
 const AnimalProducts = () => {
   const [open, setOpen] = useState<string | null>("products");
   const [pkgOpen, setPkgOpen] = useState(false);
-  const toggle = (key: string) => setOpen(open === key ? null : key);
+
+  // Prevent browser scroll-to-focus jump on accordion toggle
+  const toggle = (key: string, e: React.MouseEvent) => {
+    (e.currentTarget as HTMLElement).blur();
+    setOpen(open === key ? null : key);
+  };
 
   return (
     <Layout>
@@ -88,7 +120,10 @@ const AnimalProducts = () => {
 
         {/* Product Information */}
         <div className="border border-border rounded-sm overflow-hidden">
-          <button className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/20 transition-colors" onClick={() => toggle("products")}>
+          <button
+            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/20 transition-colors"
+            onClick={(e) => toggle("products", e)}
+          >
             <span className="text-lg font-semibold tracking-wide">Product Information</span>
             {open === "products" ? <ChevronUp className="w-5 h-5 text-muted-foreground" /> : <ChevronDown className="w-5 h-5 text-muted-foreground" />}
           </button>
@@ -97,11 +132,11 @@ const AnimalProducts = () => {
               {products.map((p) => (
                 <div key={p.id} className="pt-8">
                   <div className="flex flex-col md:flex-row gap-6 items-start">
-                    <div className="w-full md:w-48 flex-shrink-0">
+                    <div className="w-full md:w-44 flex-shrink-0">
                       <img
                         src={p.image}
                         alt={p.title}
-                        className="w-full max-w-[200px] mx-auto md:mx-0 rounded-sm object-contain aspect-square bg-black/20"
+                        className="w-full max-w-[180px] mx-auto md:mx-0 rounded-sm object-contain aspect-square bg-black/30"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -144,7 +179,10 @@ const AnimalProducts = () => {
 
         {/* How to Order */}
         <div className="border border-border rounded-sm overflow-hidden">
-          <button className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/20 transition-colors" onClick={() => toggle("order")}>
+          <button
+            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/20 transition-colors"
+            onClick={(e) => toggle("order", e)}
+          >
             <span className="text-lg font-semibold tracking-wide">How to Order</span>
             {open === "order" ? <ChevronUp className="w-5 h-5 text-muted-foreground" /> : <ChevronDown className="w-5 h-5 text-muted-foreground" />}
           </button>
@@ -154,15 +192,38 @@ const AnimalProducts = () => {
                 <p>When inquiring regarding the above, please be sure to include the best contact details for orders and billing.</p>
                 <p>Use the catalogue number and/or product name with quantity. All grafts are freeze-dried and sterilized. They can be stored at room temperature for 5 years. Protect from direct sunlight.</p>
               </div>
-              <div className="overflow-x-auto">
-                <img src="/images/tablazat.png" alt="Product catalogue" className="max-w-full rounded-sm border border-border" />
+              {/* Styled HTML catalogue table */}
+              <div className="overflow-x-auto rounded-sm border border-border">
+                <table className="w-full text-xs font-mono">
+                  <thead>
+                    <tr className="bg-muted/40 border-b border-border">
+                      <th className="px-3 py-2 text-left font-bold tracking-wider w-10">ID</th>
+                      <th className="px-3 py-2 text-left font-bold tracking-wider">GRAFT NAME</th>
+                      <th className="px-3 py-2 text-left font-bold tracking-wider">PARTICLE SIZE</th>
+                      <th className="px-3 py-2 text-left font-bold tracking-wider w-20">PACK SIZE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {catalog.map((row) => (
+                      <tr key={row.id} className={`border-b border-border/50 ${rowClass[row.group]}`}>
+                        <td className="px-3 py-2 font-semibold text-foreground/70">{row.id}</td>
+                        <td className="px-3 py-2 font-medium">{row.name}</td>
+                        <td className="px-3 py-2 text-muted-foreground">{row.size}</td>
+                        <td className="px-3 py-2 font-semibold">{row.pack}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-primary/20 inline-block border border-primary/30" /> BMG (equine)</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-900/30 inline-block border border-emerald-700/30" /> Corticocancellous chips</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-blue-900/30 inline-block border border-blue-700/30" /> Cancellous block</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-cyan-900/30 inline-block border border-cyan-700/30" /> Corticocancellous block</span>
               </div>
               <div className="border-t border-border pt-6">
                 <p className="text-sm text-muted-foreground mb-4">To place an order or inquiry, please use our contact form:</p>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all"
-                >
+                <Link to="/contact" className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all">
                   Go to Contact Form →
                 </Link>
               </div>
@@ -174,7 +235,7 @@ const AnimalProducts = () => {
         <div className="border border-primary/40 rounded-sm overflow-hidden">
           <button
             className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-primary/5 transition-colors"
-            onClick={() => setPkgOpen(!pkgOpen)}
+            onClick={(e) => { (e.currentTarget as HTMLElement).blur(); setPkgOpen(!pkgOpen); }}
           >
             <div>
               <span className="text-lg font-semibold tracking-wide">Package Insert & Instructions for Use</span>
@@ -184,33 +245,31 @@ const AnimalProducts = () => {
           </button>
           {pkgOpen && (
             <div className="px-6 py-8 border-t border-primary/20 bg-muted/10">
-              <pre className="whitespace-pre-wrap text-xs text-muted-foreground leading-relaxed font-sans">
-                {packageInsert}
-              </pre>
+              <pre className="whitespace-pre-wrap text-xs text-muted-foreground leading-relaxed font-sans">{packageInsert}</pre>
             </div>
           )}
         </div>
 
         {/* Processing */}
         <div className="border border-border rounded-sm overflow-hidden">
-          <button className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/20 transition-colors" onClick={() => toggle("processing")}>
+          <button
+            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/20 transition-colors"
+            onClick={(e) => toggle("processing", e)}
+          >
             <span className="text-lg font-semibold tracking-wide">Processing</span>
             {open === "processing" ? <ChevronUp className="w-5 h-5 text-muted-foreground" /> : <ChevronDown className="w-5 h-5 text-muted-foreground" />}
           </button>
           {open === "processing" && (
             <div className="px-6 py-8 border-t border-border text-sm text-muted-foreground space-y-4">
               <p>We apply Quality Assurance Practices through all stages of our activities.</p>
-              <div>
-                <p className="font-semibold text-foreground mb-2">Quality Assurance Means:</p>
-                <ul className="space-y-1">
-                  {["Standard Operating Procedures","Document Control","Donor Screening","Traceability"].map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="space-y-1">
+                {["Standard Operating Procedures","Document Control","Donor Screening","Traceability"].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
@@ -230,26 +289,14 @@ const AnimalProducts = () => {
             ))}
           </div>
           <div className="space-y-4">
-            <img
-              src="/images/newboneformation.jpg"
-              alt="New bone formation by BMG after 6 months in horse dentistry"
-              className="w-full rounded-sm border border-border"
-            />
-            <img
-              src="/images/bmgremodelling.jpg"
-              alt="BMG remodelling"
-              className="w-full rounded-sm border border-border"
-            />
+            <img src="/images/newboneformation.jpg" alt="New bone formation by BMG after 6 months in horse dentistry" className="w-full rounded-sm border border-border" />
+            <img src="/images/bmgremodelling.jpg" alt="BMG remodelling" className="w-full rounded-sm border border-border" />
           </div>
         </div>
       </section>
 
-      {/* Contact CTA */}
       <section className="px-6 pb-24 text-center">
-        <Link
-          to="/contact"
-          className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all"
-        >
+        <Link to="/contact" className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all">
           Contact us →
         </Link>
       </section>
