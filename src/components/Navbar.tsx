@@ -11,23 +11,18 @@ const navItems = [
   { label: "Contact", path: "/contact" },
 ];
 
-const logoLeft = "/images/iT_logo_left.png";
-const logoRight = "/images/iT_logo_right.png";
-
 const Navbar = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Left logo */}
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link to="/" className="flex-shrink-0">
-          <img src={logoLeft} alt="InTissue logo" className="h-12 w-auto object-contain" />
+          <img src="/images/it_logo.jpg" alt="InTissue" className="h-16 w-auto object-contain" />
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <Link
               key={item.path}
@@ -43,12 +38,10 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right logo */}
         <div className="hidden md:flex items-center">
-          <img src={logoRight} alt="InTissue mark" className="h-12 w-auto object-contain" />
+          <img src="/images/logo_white.jpg" alt="InTissue mark" className="h-16 w-auto object-contain" />
         </div>
 
-        {/* Mobile toggle */}
         <button
           className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -57,7 +50,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden bg-background border-t border-border px-6 py-4 space-y-3">
           {navItems.map((item) => (
