@@ -40,13 +40,13 @@ const Contact = () => {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative min-h-[36vh] flex items-center justify-center">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: "url(/images/contact_hero.jpeg)" }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background" />
-        <div className="relative z-10 text-center px-6">
+      {/* Hero — compact, no large gap */}
+      <section className="relative py-14 px-6 text-center overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-25" style={{ backgroundImage: "url(/images/contact_hero.jpeg)" }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 to-background" />
+        <div className="relative z-10 max-w-xl mx-auto">
           <Mail className="mx-auto mb-4 text-primary" size={32} />
-          <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
+          <h2 className="text-2xl font-semibold mb-2">Contact Us</h2>
           <p className="text-muted-foreground">
             Send us a message, a product inquiry or an order request — we'll get back to you shortly.
           </p>
@@ -54,7 +54,7 @@ const Contact = () => {
       </section>
 
       {/* Form */}
-      <section className="py-16 px-6">
+      <section className="pb-20 pt-6 px-6">
         <div className="max-w-xl mx-auto">
           <form action="https://formspree.io/f/mgoqedgv" method="POST" className="space-y-5">
 
@@ -87,7 +87,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Hidden field carrying the request type */}
             <input type="hidden" name="request_type" value={type === "order" ? "PRODUCT ORDER" : "GENERAL INQUIRY"} />
 
             <div className="flex flex-col gap-1.5">
@@ -106,7 +105,6 @@ const Contact = () => {
               </div>
             )}
 
-            {/* Order table — only in order mode */}
             {type === "order" && (
               <div className="space-y-2">
                 <span className="text-sm font-medium">Select products &amp; quantities</span>
@@ -148,7 +146,6 @@ const Contact = () => {
                     <pre className="whitespace-pre-wrap font-mono text-muted-foreground">{orderLines}</pre>
                   </div>
                 )}
-                {/* Hidden field carrying the order details into the email */}
                 <input type="hidden" name="order_details" value={orderLines || "(no items selected)"} />
               </div>
             )}
@@ -167,7 +164,6 @@ const Contact = () => {
               />
             </div>
 
-            {/* GDPR consent */}
             <div className="flex items-start gap-3">
               <input id="consent" type="checkbox" name="consent" required className="mt-0.5 shrink-0 accent-primary" />
               <label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed">
