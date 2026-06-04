@@ -10,8 +10,11 @@ import Contact from "./pages/Contact";
 import Legal from "./pages/Legal";
 import NotFound from "./pages/NotFound";
 import AnimalProducts from "./pages/AnimalProducts";
+import Production from "@/pages/Production";
+
 
 const queryClient = new QueryClient();
+
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -23,6 +26,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/animal" element={<AnimalProducts />} />
+        <Route path="/production" element={<Production />} />
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/legal" element={<Legal />} />
@@ -33,4 +37,6 @@ const App = () => (
   </QueryClientProvider>
 );
 
+
 export default App;
+
