@@ -95,10 +95,19 @@ const AnimalProducts = () => {
   const [open, setOpen] = useState<string | null>("products");
   const [pkgOpen, setPkgOpen] = useState(false);
 
-  // Prevent browser scroll-to-focus jump on accordion toggle
+  // Preserve scroll position so the clicked header stays visually fixed
+  const toggleWith = (setter: () => void, btn: HTMLElement) => {
+    const before = btn.getBoundingClientRect().top;
+    setter();
+    requestAnimationFrame(() => {
+      const after = btn.getBoundingClientRect().top;
+      window.scrollBy(0, after - before);
+    });
+  };
+
   const toggle = (key: string, e: React.MouseEvent) => {
-    (e.currentTarget as HTMLElement).blur();
-    setOpen(open === key ? null : key);
+    const btn = e.currentTarget as HTMLElement;
+    toggleWith(() => setOpen(open === key ? null : key), btn);
   };
 
   return (
@@ -137,6 +146,7 @@ const AnimalProducts = () => {
                         src={p.image}
                         alt={p.title}
                         className="w-full max-w-[180px] mx-auto md:mx-0 rounded-sm object-contain aspect-square bg-black/30"
+                        loading="lazy"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -192,7 +202,6 @@ const AnimalProducts = () => {
                 <p>When inquiring regarding the above, please be sure to include the best contact details for orders and billing.</p>
                 <p>Use the catalogue number and/or product name with quantity. All grafts are freeze-dried and sterilized. They can be stored at room temperature for 5 years. Protect from direct sunlight.</p>
               </div>
-              {/* Styled HTML catalogue table */}
               <div className="overflow-x-auto rounded-sm border border-border">
                 <table className="w-full text-xs font-mono">
                   <thead>
@@ -222,9 +231,9 @@ const AnimalProducts = () => {
                 <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-cyan-900/30 inline-block border border-cyan-700/30" /> Corticocancellous block</span>
               </div>
               <div className="border-t border-border pt-6">
-                <p className="text-sm text-muted-foreground mb-4">To place an order or inquiry, please use our contact form:</p>
-                <Link to="/contact" className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all">
-                  Go to Contact Form →
+                <p className="text-sm text-muted-foreground mb-4">To place an order or inquiry, please use our contact form — you can specify the catalogue numbers there:</p>
+                <Link to="/contact?type=order" className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all">
+                  Go to Order / Inquiry Form →
                 </Link>
               </div>
             </div>
@@ -235,7 +244,7 @@ const AnimalProducts = () => {
         <div className="border border-primary/40 rounded-sm overflow-hidden">
           <button
             className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-primary/5 transition-colors"
-            onClick={(e) => { (e.currentTarget as HTMLElement).blur(); setPkgOpen(!pkgOpen); }}
+            onClick={(e) => { const btn = e.currentTarget as HTMLElement; toggleWith(() => setPkgOpen(!pkgOpen), btn); }}
           >
             <div>
               <span className="text-lg font-semibold tracking-wide">Package Insert & Instructions for Use</span>
@@ -288,9 +297,25 @@ const AnimalProducts = () => {
               </div>
             ))}
           </div>
-          <div className="space-y-4">
-            <img src="/images/newboneformation.jpg" alt="New bone formation by BMG after 6 months in horse dentistry" className="w-full rounded-sm border border-border" />
-            <img src="/images/bmgremodelling.jpg" alt="BMG remodelling" className="w-full rounded-sm border border-border" />
+          <div className="space-y-6">
+            <figure>
+              <img
+                src="/images/newboneformation.jpg"
+                alt="New bone formation by BMG after 6 months in horse dentistry"
+                className="block mx-auto max-w-2xl w-full h-auto rounded-sm border border-border"
+                loading="lazy"
+              />
+              <figcaption className="text-center text-xs text-muted-foreground mt-2">New bone formation by BMG after 6 months in horse dentistry</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/images/bmgremodelling.jpg"
+                alt="BMG remodelling"
+                className="block mx-auto max-w-2xl w-full h-auto rounded-sm border border-border"
+                loading="lazy"
+              />
+              <figcaption className="text-center text-xs text-muted-foreground mt-2">BMG remodelling</figcaption>
+            </figure>
           </div>
         </div>
       </section>
