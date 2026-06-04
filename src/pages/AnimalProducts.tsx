@@ -9,17 +9,15 @@ const products = [
     title: "BMG — Bone Matrix Gelatin (equine)",
     image: "/images/BMG - Bone Matrix Gelatin (equine).jpg",
     description: "BMG is a partially decalcified, deantigenized, autolyzed, freeze-dried, and sterilized bone matrix concentrate derived from cortical bone, with minimal collagen content. Processing preserves BMP (bone morphogenetic protein) activity, triggering rapid bone formation through osteoinductive properties. Indicated for use in both dentistry and orthopedics.",
-    subtitle: "SUITABLE FOR HORSE, DOG, CAT and other species",
     indications: ["Fracture voids and repair","Mal- or non-unions","Bone loss cases","TPLOs and TTAs","Arthrodesis procedures","Any other application where bone graft is needed"],
     available: ["Fine and ultrafine particle sizes","1 cc, 3 cc and 5 cc pack sizes"],
-    note: null,
+    note: "SUITABLE FOR HORSE, DOG, CAT and other species",
   },
   {
     id: "chips",
     title: "Corticocancellous Chips (canine or equine)",
     image: "/images/Corticocancellous chips ( canine or equine).jpg",
     description: "Partially decalcified, autolyzed, and deantigenized freeze-dried bone matrix particles. Due to osteoconductive properties, indicated for filling bone defects and cysts. When applied within the same species, the graft undergoes complete remodeling (creeping substitution), and resulting new bone is indistinguishable from host native bone tissue. Can be combined with BMG.",
-    subtitle: null,
     indications: ["Fracture voids and repair","Mal- or non-unions","Bone loss cases","TPLOs and TTAs","Arthrodesis procedures","Any other application where bone graft is needed"],
     available: ["Fine and medium sized particles","1 cc, 3 cc and 5 cc pack sizes"],
     note: "DOG GRAFTS IS SUITABLE FOR CATS TOO",
@@ -29,7 +27,6 @@ const products = [
     title: "Specialty Grafts (equine cancellous & corticocancellous)",
     image: "/images/Speciality grafts.jpg",
     description: "Primarily structural grafts, suitable for restoring bone integrity and biomechanics. Within the same species, they undergo complete remodeling — cancellous components remodel more rapidly, cortical bone more slowly.",
-    subtitle: null,
     indications: null,
     available: [
       "Cancellous blocks: 1 cc (10×10×10 mm), 2 cc (30×10×10 mm), 5 cc (50×10×10 mm)",
@@ -47,12 +44,7 @@ const scientific = [
   { term: "Completely remodeled", def: "It is completely resorbed and replaced by new bone." },
 ];
 
-const packageInsert = `Veterinary Bone Graft – Package Insert & Instructions for Use
-
-Freeze-Dried sterilized bone allograft (particulate or block)
-Storage: Room Temperature | Expiration: 5 years (see label)
-
-CIRCULATOR:
+const packageInsert = `CIRCULATOR:
 1. Remove the Transplant Record and peel pouch containing the graft from the outer pouch. Everything inside the peel pouch is considered sterile.
 2. Inspect the pouch. If damaged, consider the graft unsterile.
 3. Using sterile technique, peel the pouch open and present the sterile innermost vacuum-sealed pouch to a sterile team member.
@@ -62,39 +54,19 @@ STERILE TEAM MEMBER OR SURGEON:
 5. Tear open the innermost pouch and remove the graft.
 6. Obtain a few milliliters of blood and/or sterile physiologic solution for rehydration. Typically surgical area provides sufficient blood.
 7. To rehydrate (if necessary): Add sufficient blood/rehydration solution to minimally cover the graft. Minimal waiting for particulate grafts; 5–10 minutes for larger grafts.
-8. Aspirate or decant excess liquid. Combine graft with patient blood or bone marrow. The graft may be mixed with autograft. Ensure grafts are implanted in a site with good vascular access.
+8. Aspirate or decant excess liquid. Combine graft with patient blood or bone marrow. May be mixed with autograft. Ensure implantation in a site with good vascular access.
 
-GRAFT DESCRIPTION:
-IT grafts are supplied as particulate grafts (BMG, cancellous bone) or as specialty grafts (block).
-• BMG or cancellous bone chips: Packaged in cc doses (1, 3 or 5 cc), various particle sizes. No carrier additives.
-• Specialty grafts: Cortical or cancellous bone in varying sizes including blocks and diaphyseal shaft sections (on demand). Some partially demineralized; structural grafts are not demineralized.
+INDICATIONS: May be used wherever bone graft is needed — periodontic, orthopedic, neurosurgical and other reconstructive surgeries. Single-patient, single-occasion use only.
 
-INDICATIONS & USES:
-May be used wherever a bone graft is needed — periodontic, orthopedic, neurosurgical and other reconstructive surgeries. May be used alone or combined with autograft, PRP, PRF, bone marrow, substitutes or other implants. Pack particulate grafts into defect site. Specialty grafts may be cut to fit. All grafts should be implanted in a well-stabilized site.
-Packaging and dosages are for single-patient, single-occasion use only.
+CONTRAINDICATIONS: Not for use in human patients. Do not re-sterilize. Do not implant into a site with active or latent infection. Report adverse outcomes promptly to InTissue.
 
-CONTRAINDICATIONS & PRECAUTIONS:
-Caution: Not for use in human patients.
-Do not re-sterilize. Do not implant into a site with active or latent infection. As with all transplants, there may be a small risk of disease transmission. Adverse outcomes must be reported promptly to InTissue.
+STORAGE: Room temperature, up to 5 years from packaging date. Protect from heat above 45°C. After opening: implant promptly or refrigerate in sealed container; discard if unused after 6 hours.
 
-DONOR SUITABILITY:
-All required infectious disease testing and screening completed. All donors screened with nucleic acid tests (PCR).
-Canine donors: vaccinated for rabies, distemper, parvovirus, hepatitis. Blood tested negative for Brucella canis, Babesia spp, Ehrlichia spp, Anaplasma spp, Dirofilaria immitis.
-Equine donors: vaccinated for Rabies and Tetanus. Blood tested negative for Equine Infectious Anemia, EHV1, EHV4, Equine influenza, Streptococcus equi, Babesia caballi, Theileria equi.
-
-PROCESSING:
-Processed in sterile laminar airflow using proprietary solutions (may include antibiotics, alcohols, hydrogen peroxide, acids, buffers, enzymes). Steps remove cellular elements and reduce immunogenicity while preserving osteoinductive proteins. Freeze-dried by lyophilization; moisture content < 5%. Sterilized by EO. Sterilization indicator label on packaging.
-
-STORAGE & HANDLING:
-Store at room temperature for up to 5 years from packaging date. Protect from heat above 45°C for more than 2 days. After opening, maintain aseptic conditions and implant promptly. If opened > 2 hours, refrigerate in sealed container. Discard if not used within 6 hours.
-
-Manufactured by InTissue (Hisztolabor Ltd), 2 Kocsag, Győr, Hungary 9026
-www.intissue.com`;
+Manufactured by InTissue (Hisztolabor Ltd), 2 Kocsag, Győr, Hungary 9026 | www.intissue.com`;
 
 const AnimalProducts = () => {
   const [open, setOpen] = useState<string | null>("products");
   const [pkgOpen, setPkgOpen] = useState(false);
-
   const toggle = (key: string) => setOpen(open === key ? null : key);
 
   return (
@@ -121,45 +93,48 @@ const AnimalProducts = () => {
             {open === "products" ? <ChevronUp className="w-5 h-5 text-muted-foreground" /> : <ChevronDown className="w-5 h-5 text-muted-foreground" />}
           </button>
           {open === "products" && (
-            <div className="px-6 pb-8 space-y-12 border-t border-border">
+            <div className="px-6 pb-8 space-y-10 border-t border-border">
               {products.map((p) => (
-                <div key={p.id} className="pt-8 grid md:grid-cols-2 gap-8 items-start">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="w-full rounded-sm object-cover aspect-video"
-                  />
-                  <div>
-                    <h3 className="text-xl font-semibold mb-3">{p.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">{p.description}</p>
-                    {p.subtitle && <p className="font-semibold text-sm mb-3 text-primary">{p.subtitle}</p>}
-                    {p.indications && (
-                      <>
-                        <p className="text-sm font-semibold mb-2">Indications:</p>
-                        <ul className="space-y-1 mb-4">
-                          {p.indications.map((ind) => (
-                            <li key={ind} className="flex items-start gap-2 text-sm text-muted-foreground">
-                              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                              {ind}
-                            </li>
-                          ))}
-                        </ul>
-                      </>
-                    )}
-                    <p className="text-sm font-semibold mb-2">Available:</p>
-                    <ul className="space-y-1 mb-4">
-                      {p.available.map((a) => (
-                        <li key={a} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                          {a}
-                        </li>
-                      ))}
-                    </ul>
-                    {p.note && (
-                      <p className="text-xs font-bold uppercase tracking-widest text-primary border border-primary/30 rounded-sm px-3 py-2 inline-block">
-                        {p.note}
-                      </p>
-                    )}
+                <div key={p.id} className="pt-8">
+                  <div className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="w-full md:w-48 flex-shrink-0">
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="w-full max-w-[200px] mx-auto md:mx-0 rounded-sm object-contain aspect-square bg-black/20"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-xl font-semibold mb-3">{p.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-4">{p.description}</p>
+                      {p.indications && (
+                        <>
+                          <p className="text-sm font-semibold mb-2">Indications:</p>
+                          <ul className="space-y-1 mb-4">
+                            {p.indications.map((ind) => (
+                              <li key={ind} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                                {ind}
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
+                      <p className="text-sm font-semibold mb-2">Available:</p>
+                      <ul className="space-y-1 mb-4">
+                        {p.available.map((a) => (
+                          <li key={a} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                            {a}
+                          </li>
+                        ))}
+                      </ul>
+                      {p.note && (
+                        <p className="text-xs font-bold uppercase tracking-widest text-primary border border-primary/30 rounded-sm px-3 py-2 inline-block">
+                          {p.note}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -254,34 +229,29 @@ const AnimalProducts = () => {
               </div>
             ))}
           </div>
-          <img
-            src="/images/newboneformation.jpg"
-            alt="New bone formation by BMG after 6 months in horse dentistry"
-            className="w-full rounded-sm border border-border"
-          />
+          <div className="space-y-4">
+            <img
+              src="/images/newboneformation.jpg"
+              alt="New bone formation by BMG after 6 months in horse dentistry"
+              className="w-full rounded-sm border border-border"
+            />
+            <img
+              src="/images/bmgremodelling.jpg"
+              alt="BMG remodelling"
+              className="w-full rounded-sm border border-border"
+            />
+          </div>
         </div>
       </section>
 
-      {/* QR + contact */}
-      <section className="px-6 pb-24 text-center space-y-6">
-        <div>
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Scan to visit our website</p>
-          <img
-            src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://www.intissue.com&bgcolor=ffffff&color=000000"
-            alt="QR code"
-            className="mx-auto rounded-sm"
-            width={180}
-            height={180}
-          />
-        </div>
-        <div>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all"
-          >
-            Contact us →
-          </Link>
-        </div>
+      {/* Contact CTA */}
+      <section className="px-6 pb-24 text-center">
+        <Link
+          to="/contact"
+          className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all"
+        >
+          Contact us →
+        </Link>
       </section>
     </Layout>
   );
