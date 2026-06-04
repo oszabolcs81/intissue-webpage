@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { Clock, Droplet, ShieldCheck, Layers, Activity, BadgeCheck, ArrowRight } from "lucide-react";
+import { Clock, Droplet, ShieldCheck, Layers, Activity, BadgeCheck, ArrowRight, Play } from "lucide-react";
 
 const advantages = [
   { icon: Clock, title: "Reduced OR Time", text: "Ready-to-use grafts cut operating time and overall procedure costs." },
@@ -9,12 +9,6 @@ const advantages = [
   { icon: Layers, title: "Customizable Forms", text: "Available in tailored quantities, particle sizes and structural blocks." },
   { icon: Activity, title: "Accelerated Healing", text: "Osteoinductive properties drive rapid osseointegration and remodeling." },
   { icon: BadgeCheck, title: "Clinically Proven", text: "Studies show allografts perform on par with autograft in bone healing." },
-];
-
-const cards = [
-  { label: "Human Treatment", sub: "Surgery & Periodontology", img: "/images/human_treatment.jpg", path: "/videos", badge: null },
-  { label: "Animal Treatment", sub: "Veterinary Products", img: "/images/animal_treatment.jpg", path: "/animal", badge: "Products & Info" },
-  { label: "Tati the Dog", sub: "Case Study", img: "/images/tati_dog.jpg", path: "/videos", badge: null },
 ];
 
 const Index = () => (
@@ -40,25 +34,51 @@ const Index = () => (
     {/* Explore Cards */}
     <section className="px-6 py-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-        {cards.map((card) => (
-          <Link key={card.label} to={card.path} className="group relative overflow-hidden rounded-md aspect-[4/5] md:aspect-video block">
-            <img src={card.img} alt={card.label} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-            {card.badge && (
-              <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-[11px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg">
-                {card.badge}
-                <ArrowRight className="w-3 h-3" />
-              </span>
-            )}
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <p className="text-xs uppercase tracking-widest text-primary mb-1">{card.sub}</p>
-              <h3 className="text-xl font-semibold mb-1">{card.label}</h3>
-              <span className="inline-flex items-center gap-1.5 text-sm text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                {card.badge ? "Explore products" : "Watch videos"} <ArrowRight className="w-4 h-4" />
-              </span>
-            </div>
+
+        {/* Human Treatment → Videos */}
+        <Link to="/videos" className="group relative overflow-hidden rounded-md aspect-[4/5] md:aspect-video block">
+          <img src="/images/human_treatment.jpg" alt="Human Treatment" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <p className="text-xs uppercase tracking-widest text-primary mb-1">Surgery & Periodontology</p>
+            <h3 className="text-xl font-semibold mb-1">Human Treatment</h3>
+            <span className="inline-flex items-center gap-1.5 text-sm text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              Watch videos <Play className="w-3 h-3" />
+            </span>
+          </div>
+        </Link>
+
+        {/* Animal Treatment — dual link card */}
+        <div className="group relative overflow-hidden rounded-md aspect-[4/5] md:aspect-video block">
+          <img src="/images/animal_treatment.jpg" alt="Animal Treatment" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+          {/* Products badge */}
+          <Link to="/animal" className="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-[11px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg hover:bg-primary/80 transition-colors">
+            Products & Info <ArrowRight className="w-3 h-3" />
           </Link>
-        ))}
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <p className="text-xs uppercase tracking-widest text-primary mb-1">Veterinary</p>
+            <h3 className="text-xl font-semibold mb-2">Animal Treatment</h3>
+            {/* Videos link */}
+            <Link to="/videos" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Play className="w-3 h-3" /> Animal videos
+            </Link>
+          </div>
+        </div>
+
+        {/* Tati the Dog → Videos */}
+        <Link to="/videos" className="group relative overflow-hidden rounded-md aspect-[4/5] md:aspect-video block">
+          <img src="/images/tati_dog.jpg" alt="Tati the Dog" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <p className="text-xs uppercase tracking-widest text-primary mb-1">Case Study</p>
+            <h3 className="text-xl font-semibold mb-1">Tati the Dog</h3>
+            <span className="inline-flex items-center gap-1.5 text-sm text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              Watch video <Play className="w-3 h-3" />
+            </span>
+          </div>
+        </Link>
+
       </div>
     </section>
 
