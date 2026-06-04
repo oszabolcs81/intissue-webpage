@@ -1,15 +1,15 @@
 import Layout from "@/components/Layout";
-import { ExternalLink, Instagram, Camera, Monitor, Globe, Shield, Cpu } from "lucide-react";
+import { ExternalLink, Instagram, Camera, Monitor, Globe, Database, Shield } from "lucide-react";
 
 const Production = () => (
   <Layout>
     {/* Header */}
     <section className="py-16 px-6 text-center border-b border-border">
       <div className="max-w-3xl mx-auto">
-        <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">Behind the Scenes</p>
-        <h1 className="text-4xl md:text-5xl font-bold mb-5">Production Behind InTissue</h1>
+        <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">Support Team</p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-5">The Support Team Behind InTissue</h1>
         <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-          The visual content and digital infrastructure behind InTissue is built by two dedicated partner teams.
+          The visual content and digital infrastructure behind InTissue is built by two dedicated partner teams — silent contributors to every aspect of our online presence.
         </p>
       </div>
     </section>
@@ -77,12 +77,12 @@ const Production = () => (
             </div>
           </div>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Illu Kft provides the complete technical background behind InTissue's digital presence. From web design and development to IT infrastructure and ongoing technical consultation, Illu Kft ensures a stable, secure and professional digital environment.
+            Illu Kft provides solutions across many areas of IT — from infrastructure and complete technical support to web development and digital security. They built and operate the platform you are currently using.
           </p>
           <ul className="space-y-3 mb-6">
             {[
               "Web design & development (this website)",
-              "IT infrastructure management",
+              "IT infrastructure and complete support",
               "Technical consultation & system architecture",
               "Digital security & performance optimization",
               "Ongoing technical support",
@@ -105,19 +105,28 @@ const Production = () => (
           </a>
         </div>
         <div className="space-y-4">
-          <div className="bg-muted/10 border border-border rounded-sm p-5">
-            <div className="flex items-center gap-2 mb-2">
-              <Shield className="w-4 h-4 text-primary" />
-              <p className="font-semibold text-sm">Reliability & Security</p>
+          {/* Featured: Veeam Backup */}
+          <div className="bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/40 rounded-sm p-6">
+            <div className="flex items-center gap-2 mb-3">
+              <Database className="w-5 h-5 text-primary" />
+              <p className="text-xs uppercase tracking-widest text-primary font-bold">Featured Service</p>
             </div>
-            <p className="text-sm text-muted-foreground">A professional web presence in the medical sector requires stability, data security and compliance. Illu Kft manages these aspects so InTissue can focus on its core mission.</p>
+            <h3 className="text-lg font-bold mb-2">Veeam Backup Solutions</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Enterprise-grade data backup and disaster recovery powered by Veeam — protecting business-critical data with industry-leading reliability.
+            </p>
+            <p className="text-xs text-muted-foreground/70 mt-3 italic">
+              Note: Veeam Backup is a software-based data protection solution — not to be confused with KÜRT's hard-disk data recovery services.
+            </p>
           </div>
           <div className="bg-muted/10 border border-border rounded-sm p-5">
             <div className="flex items-center gap-2 mb-2">
-              <Cpu className="w-4 h-4 text-primary" />
-              <p className="font-semibold text-sm">This Website</p>
+              <Shield className="w-4 h-4 text-primary" />
+              <p className="font-semibold text-sm">Trusted IT Partner</p>
             </div>
-            <p className="text-sm text-muted-foreground">The intissue.com website was designed and developed by Illu Kft — built as a modern, fast and mobile-optimised platform that represents InTissue's professional standards internationally.</p>
+            <p className="text-sm text-muted-foreground">
+              Illu Kft delivers comprehensive IT solutions — covering infrastructure, security, development and consultation. A reliable technical partner for businesses that depend on stable digital operations.
+            </p>
           </div>
         </div>
       </div>
