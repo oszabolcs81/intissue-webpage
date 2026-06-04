@@ -12,9 +12,9 @@ const advantages = [
 ];
 
 const cards = [
-  { label: "Human Treatment", img: "/images/human_treatment.jpg", path: "/videos", badge: null },
-  { label: "Animal Treatment", img: "/images/animal_treatment.jpg", path: "/animal", badge: "Products & Info" },
-  { label: "Tati the Dog", img: "/images/tati_dog.jpg", path: "/videos", badge: null },
+  { label: "Human Treatment", sub: "Surgery & Periodontology", img: "/images/human_treatment.jpg", path: "/videos", badge: null },
+  { label: "Animal Treatment", sub: "Veterinary Products", img: "/images/animal_treatment.jpg", path: "/animal", badge: "Products & Info" },
+  { label: "Tati the Dog", sub: "Case Study", img: "/images/tati_dog.jpg", path: "/videos", badge: null },
 ];
 
 const Index = () => (
@@ -28,10 +28,12 @@ const Index = () => (
       <div className="relative text-center px-6 py-14 max-w-3xl">
         <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">Intelligent Tissue Solutions</p>
         <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">Advanced bone grafts for human &amp; veterinary care</h1>
-        <p className="text-muted-foreground max-w-xl mx-auto">
-          Freeze-dried, sterilized allografts engineered for predictable regeneration.{" "}
-          <Link to="/contact" className="text-primary underline underline-offset-4">Get in touch</Link>.
+        <p className="text-muted-foreground max-w-xl mx-auto mb-4">
+          Freeze-dried, sterilized allografts engineered for predictable regeneration.
         </p>
+        <Link to="/contact" className="inline-flex items-center gap-2 text-primary underline underline-offset-4 text-sm hover:opacity-80 transition-opacity">
+          Get in touch <ArrowRight className="w-3 h-3" />
+        </Link>
       </div>
     </section>
 
@@ -49,6 +51,7 @@ const Index = () => (
               </span>
             )}
             <div className="absolute bottom-0 left-0 right-0 p-6">
+              <p className="text-xs uppercase tracking-widest text-primary mb-1">{card.sub}</p>
               <h3 className="text-xl font-semibold mb-1">{card.label}</h3>
               <span className="inline-flex items-center gap-1.5 text-sm text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                 {card.badge ? "Explore products" : "Watch videos"} <ArrowRight className="w-4 h-4" />
@@ -59,7 +62,7 @@ const Index = () => (
       </div>
     </section>
 
-    {/* Advantages - sophisticated grid */}
+    {/* Advantages */}
     <section className="px-6 py-16 bg-muted/10 border-y border-border">
       <div className="max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-12">
@@ -83,11 +86,11 @@ const Index = () => (
       </div>
     </section>
 
-    {/* About / CTA */}
+    {/* CTA */}
     <section className="px-6 py-20 text-center">
       <div className="max-w-2xl mx-auto">
         <p className="text-muted-foreground mb-6 text-lg">
-          Learn a revolutionary new technology from the best &mdash; from the comfort of your home.
+          Learn a revolutionary new technology from the best — from the comfort of your home.
         </p>
         <Link to="/videos" className="inline-flex items-center gap-2 border border-foreground/40 text-sm uppercase tracking-widest px-8 py-3 hover:bg-foreground hover:text-background transition-all">
           Explore our work <ArrowRight className="w-4 h-4" />
