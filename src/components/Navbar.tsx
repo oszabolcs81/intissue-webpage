@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import logoLeft from "@/assets/logo-left.avif";
 import logoRight from "@/assets/logo-right.avif";
 
+
 const navItems = [
   { label: "Home", path: "/" },
   { label: "Videos", path: "/videos" },
@@ -11,9 +12,11 @@ const navItems = [
   { label: "Contact", path: "/contact" },
 ];
 
+
 const Navbar = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
@@ -22,6 +25,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-3">
           <img src={logoLeft} alt="InTissue logo" className="h-12 w-auto object-contain" />
         </Link>
+
 
         {/* Center nav */}
         <div className="hidden md:flex items-center gap-10">
@@ -40,10 +44,12 @@ const Navbar = () => {
           ))}
         </div>
 
+
         {/* Right logo - InTissue mark */}
         <div className="hidden md:flex items-center">
           <img src={logoRight} alt="InTissue mark" className="h-12 w-auto object-contain" />
         </div>
+
 
         {/* Mobile toggle */}
         <button
@@ -53,6 +59,7 @@ const Navbar = () => {
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+
 
       {/* Mobile menu */}
       {mobileOpen && (
@@ -65,16 +72,3 @@ const Navbar = () => {
               className={`block text-sm tracking-widest uppercase ${
                 location.pathname === item.path
                   ? "text-foreground font-semibold"
-                  : "text-muted-foreground"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      )}
-    </nav>
-  );
-};
-
-export default Navbar;
