@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
 
 interface TeamMember {
@@ -201,6 +202,11 @@ const MemberCard = ({ member }: { member: TeamMember }) => (
 
 const Team = () => (
   <Layout>
+    <Helmet>
+      <title>Team – InTissue</title>
+      <meta name="description" content="Meet the InTissue team of experienced surgeons, specialists and veterinary professionals dedicated to bone graft innovation." />
+      <link rel="canonical" href="https://www.intissue.com/team" />
+    </Helmet>
     <section className="py-16 px-6">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-3">Team</h1>

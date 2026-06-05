@@ -1,8 +1,14 @@
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import { ExternalLink, Instagram, Camera, Monitor, Globe, Database, Shield } from "lucide-react";
 
 const Production = () => (
   <Layout>
+    <Helmet>
+      <title>The Connective Layer – InTissue</title>
+      <meta name="description" content="Meet the creative and technical partners behind InTissue: BARLINKA (photography) and Illu Kft (enterprise IT and web development)." />
+      <link rel="canonical" href="https://www.intissue.com/production" />
+    </Helmet>
     {/* Header */}
     <section className="py-16 px-6 text-center border-b border-border">
       <div className="max-w-3xl mx-auto">

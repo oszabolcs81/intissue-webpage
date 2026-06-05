@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -112,6 +113,11 @@ const AnimalProducts = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Veterinary Bone Grafts – InTissue</title>
+        <meta name="description" content="InTissue veterinary bone grafts: BMG, Corticocancellous Chips and Specialty Grafts for equine, canine and feline patients. ISO 13485 certified." />
+        <link rel="canonical" href="https://www.intissue.com/animal" />
+      </Helmet>
       <section className="bg-primary/10 border-b border-border px-6 py-5 text-center">
         <p className="text-sm md:text-base font-medium tracking-wide">
           InTissue — ISO 9001:2015 and ISO 13485:2016 certified veterinary tissue bank

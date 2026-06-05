@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import { Link, useSearchParams } from "react-router-dom";
 
@@ -17,6 +18,11 @@ const Legal = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Legal Information – InTissue</title>
+        <meta name="description" content="InTissue privacy policy and legal imprint. GDPR-compliant data processing information and company details." />
+        <link rel="canonical" href="https://www.intissue.com/legal" />
+      </Helmet>
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl font-bold mb-2">Legal Information</h1>
