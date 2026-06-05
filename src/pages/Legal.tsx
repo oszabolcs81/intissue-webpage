@@ -5,6 +5,7 @@ import { Link, useSearchParams } from "react-router-dom";
 type Tab = "privacy" | "imprint";
 
 const Legal = () => {
+  const contactEmail = atob("b3JzaS5oYWphc0BnbWFpbC5jb20=");
   const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState<Tab>(
     searchParams.get("tab") === "imprint" ? "imprint" : "privacy"
@@ -75,7 +76,6 @@ const Legal = () => {
                         ["Registered address", "8174 Balatonkenese, Kárpátalja utca 18., Hungary"],
                         ["Company registration no.", "19-09-520561"],
                         ["VAT number", "14845639-2-19"],
-                        ["Contact e-mail", "orsi.hajas@gmail.com"],
                         ["Website", "https://www.intissue.com"],
                       ].map(([k, v]) => (
                         <tr key={k}>
@@ -83,6 +83,12 @@ const Legal = () => {
                           <td className="py-2 px-3">{v}</td>
                         </tr>
                       ))}
+                      <tr>
+                        <td className="py-2 px-3 font-medium text-muted-foreground w-56">Contact e-mail</td>
+                        <td className="py-2 px-3">
+                          <a href={`mailto:${contactEmail}`} className="underline hover:text-foreground">{contactEmail}</a>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -208,7 +214,7 @@ const Legal = () => {
                 </ul>
                 <p className="mt-3">
                   To exercise any of these rights, please contact us at{" "}
-                  <a href="mailto:orsi.hajas@gmail.com" className="underline hover:text-foreground">orsi.hajas@gmail.com</a>. We will respond within one month
+                  <a href={`mailto:${contactEmail}`} className="underline hover:text-foreground">{contactEmail}</a>. We will respond within one month
                   (extendable by a further two months where necessary, per GDPR Art. 12(3)).
                 </p>
               </div>
@@ -274,7 +280,6 @@ const Legal = () => {
                         ["Company registration no.", "19-09-520561"],
                         ["VAT number", "14845639-2-19"],
                         ["Representative", "Hajas Orsolya"],
-                        ["Contact e-mail", "orsi.hajas@gmail.com"],
                         ["Website", "https://www.intissue.com"],
                       ].map(([k, v]) => (
                         <tr key={k}>
@@ -282,6 +287,12 @@ const Legal = () => {
                           <td className="py-2 px-3">{v}</td>
                         </tr>
                       ))}
+                      <tr>
+                        <td className="py-2 px-3 font-medium text-muted-foreground w-56">Contact e-mail</td>
+                        <td className="py-2 px-3">
+                          <a href={`mailto:${contactEmail}`} className="underline hover:text-foreground">{contactEmail}</a>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
