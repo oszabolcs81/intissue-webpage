@@ -123,6 +123,9 @@ const AnimalProducts = () => {
         <p className="text-muted-foreground text-sm max-w-xl mx-auto">
           Freeze-dried, sterilized bone allografts for equine, canine and feline patients.
         </p>
+        <Link to="/videos" className="inline-block mt-3 text-xs uppercase tracking-widest text-primary hover:underline">
+          Watch animal treatment videos →
+        </Link>
       </section>
 
       <section className="px-6 pb-12 max-w-5xl mx-auto space-y-2">

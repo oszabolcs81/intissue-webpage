@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Play } from "lucide-react";
@@ -74,7 +75,10 @@ const Videos = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex items-baseline justify-between mb-8 border-b border-border pb-3">
             <h2 className="text-2xl md:text-3xl font-semibold">Animal Treatment</h2>
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">{animalVideos.length} videos</span>
+            <div className="flex items-center gap-4">
+              <Link to="/animal" className="text-xs uppercase tracking-widest text-primary hover:underline">Product Info →</Link>
+              <span className="text-xs uppercase tracking-widest text-muted-foreground">{animalVideos.length} videos</span>
+            </div>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {animalVideos.map((v) => (
