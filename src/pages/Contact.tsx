@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useSearchParams } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Mail } from "lucide-react";
@@ -40,6 +41,11 @@ const Contact = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Contact – InTissue</title>
+        <meta name="description" content="Contact InTissue for product inquiries or bone graft orders. Send us a message and we'll get back to you shortly." />
+        <link rel="canonical" href="https://www.intissue.com/contact" />
+      </Helmet>
       {/* Hero — compact, no large gap */}
       <section className="relative py-14 px-6 text-center overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center opacity-25" style={{ backgroundImage: "url(/images/contact_hero.jpeg)" }} />

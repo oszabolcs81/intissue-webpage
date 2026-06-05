@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Clock, Droplet, ShieldCheck, Layers, Activity, BadgeCheck, ArrowRight, Play } from "lucide-react";
@@ -13,6 +14,11 @@ const advantages = [
 
 const Index = () => (
   <Layout>
+    <Helmet>
+      <title>InTissue – Intelligent Tissue Solutions</title>
+      <meta name="description" content="InTissue specializes in medical and veterinary surgical education and bone graft solutions. ISO 9001 and ISO 13485 certified tissue bank." />
+      <link rel="canonical" href="https://www.intissue.com/" />
+    </Helmet>
     {/* Hero */}
     <section
       className="relative flex items-center justify-center"

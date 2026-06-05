@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -63,6 +64,11 @@ const Videos = () => {
   const [active, setActive] = useState<Video | null>(null);
   return (
     <Layout>
+      <Helmet>
+        <title>Videos – InTissue</title>
+        <meta name="description" content="Watch InTissue surgical and veterinary treatment videos covering bone graft procedures, sinus lifts, periodontology and animal treatments." />
+        <link rel="canonical" href="https://www.intissue.com/videos" />
+      </Helmet>
       <section className="py-10 px-6 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Videos</h1>
         <p className="text-primary italic text-sm md:text-base max-w-2xl mx-auto">
