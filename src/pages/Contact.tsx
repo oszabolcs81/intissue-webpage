@@ -46,7 +46,7 @@ const Contact = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 to-background" />
         <div className="relative z-10 max-w-xl mx-auto">
           <Mail className="mx-auto mb-4 text-primary" size={32} />
-          <h2 className="text-2xl font-semibold mb-2">Contact Us</h2>
+          <h1 className="text-2xl font-semibold mb-2">Contact Us</h1>
           <p className="text-muted-foreground">
             Send us a message, a product inquiry or an order request — we'll get back to you shortly.
           </p>
@@ -91,17 +91,17 @@ const Contact = () => {
 
             <div className="flex flex-col gap-1.5">
               <label htmlFor="name" className="text-sm font-medium">Name / Clinic</label>
-              <input id="name" type="text" name="name" required placeholder="Your name or clinic" className={inputCls} />
+              <input id="name" type="text" name="name" required placeholder="Your name or clinic" maxLength={120} className={inputCls} />
             </div>
             <div className="flex flex-col gap-1.5">
               <label htmlFor="email" className="text-sm font-medium">Email</label>
-              <input id="email" type="email" name="email" required placeholder="your@email.com" className={inputCls} />
+              <input id="email" type="email" name="email" required placeholder="your@email.com" maxLength={200} className={inputCls} />
             </div>
 
             {type === "order" && (
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="country" className="text-sm font-medium">Country</label>
-                <input id="country" type="text" name="country" placeholder="Shipping country" className={inputCls} />
+                <input id="country" type="text" name="country" placeholder="Shipping country" maxLength={100} className={inputCls} />
               </div>
             )}
 
@@ -160,6 +160,7 @@ const Contact = () => {
                 required={type === "inquiry"}
                 rows={type === "order" ? 3 : 5}
                 placeholder={type === "order" ? "Delivery preferences, billing details, questions…" : "How can we help you?"}
+                maxLength={2000}
                 className={`${inputCls} resize-none`}
               />
             </div>
