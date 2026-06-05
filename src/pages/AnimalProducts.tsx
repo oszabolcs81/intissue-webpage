@@ -117,6 +117,17 @@ const AnimalProducts = () => {
         <title>Veterinary Bone Grafts – InTissue</title>
         <meta name="description" content="InTissue veterinary bone grafts: BMG, Corticocancellous Chips and Specialty Grafts for equine, canine and feline patients. ISO 13485 certified." />
         <link rel="canonical" href="https://www.intissue.com/animal" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "InTissue Veterinary Bone Grafts",
+          "url": "https://www.intissue.com/animal",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "BMG — Bone Matrix Gelatin (equine)", "url": "https://www.intissue.com/animal#bmg" },
+            { "@type": "ListItem", "position": 2, "name": "Corticocancellous Chips (canine or equine)", "url": "https://www.intissue.com/animal#chips" },
+            { "@type": "ListItem", "position": 3, "name": "Specialty Grafts (equine cancellous & corticocancellous)", "url": "https://www.intissue.com/animal#specialty" }
+          ]
+        })}</script>
       </Helmet>
       <section className="bg-primary/10 border-b border-border px-6 py-5 text-center">
         <p className="text-sm md:text-base font-medium tracking-wide">
