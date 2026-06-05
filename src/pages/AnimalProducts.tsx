@@ -8,7 +8,7 @@ const products = [
   {
     id: "bmg",
     title: "BMG — Bone Matrix Gelatin (equine)",
-    image: "/images/BMG - Bone Matrix Gelatin (equine).jpg",
+    image: "/images/BMG - Bone Matrix Gelatin (equine).webp",
     description: "BMG is a partially decalcified, deantigenized, autolyzed, freeze-dried, and sterilized bone matrix concentrate derived from cortical bone, with minimal collagen content. Processing preserves BMP (bone morphogenetic protein) activity, triggering rapid bone formation through osteoinductive properties. Indicated for use in both dentistry and orthopedics.",
     indications: ["Fracture voids and repair","Mal- or non-unions","Bone loss cases","TPLOs and TTAs","Arthrodesis procedures","Any other application where bone graft is needed"],
     available: ["Fine and ultrafine particle sizes","1 cc, 3 cc and 5 cc pack sizes"],
@@ -17,7 +17,7 @@ const products = [
   {
     id: "chips",
     title: "Corticocancellous Chips (canine or equine)",
-    image: "/images/Corticocancellous chips ( canine or equine).jpg",
+    image: "/images/Corticocancellous chips ( canine or equine).webp",
     description: "Partially decalcified, autolyzed, and deantigenized freeze-dried bone matrix particles. Due to osteoconductive properties, indicated for filling bone defects and cysts. When applied within the same species, the graft undergoes complete remodeling (creeping substitution), and resulting new bone is indistinguishable from host native bone tissue. Can be combined with BMG.",
     indications: ["Fracture voids and repair","Mal- or non-unions","Bone loss cases","TPLOs and TTAs","Arthrodesis procedures","Any other application where bone graft is needed"],
     available: ["Fine and medium sized particles","1 cc, 3 cc and 5 cc pack sizes"],
@@ -26,7 +26,7 @@ const products = [
   {
     id: "specialty",
     title: "Specialty Grafts (equine cancellous & corticocancellous)",
-    image: "/images/Speciality grafts.jpg",
+    image: "/images/Speciality grafts.webp",
     description: "Primarily structural grafts, suitable for restoring bone integrity and biomechanics. Within the same species, they undergo complete remodeling — cancellous components remodel more rapidly, cortical bone more slowly.",
     indications: null,
     available: [
@@ -309,7 +309,7 @@ const AnimalProducts = () => {
           <div className="space-y-6">
             <figure>
               <img
-                src="/images/newboneformation.jpg"
+                src="/images/newboneformation.webp"
                 alt="New bone formation by BMG after 6 months in horse dentistry"
                 className="block mx-auto max-w-2xl w-full h-auto rounded-sm border border-border"
                 loading="lazy"
@@ -318,7 +318,7 @@ const AnimalProducts = () => {
             </figure>
             <figure>
               <img
-                src="/images/bmgremodelling.jpg"
+                src="/images/bmgremodelling.webp"
                 alt="BMG remodelling"
                 className="block mx-auto max-w-2xl w-full h-auto rounded-sm border border-border"
                 loading="lazy"

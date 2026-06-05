@@ -22,7 +22,7 @@ const Index = () => (
     {/* Hero */}
     <section
       className="relative flex items-center justify-center"
-      style={{ minHeight: "42vh", backgroundImage: "url('/images/hero_banner.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+      style={{ minHeight: "42vh", backgroundImage: "url('/images/hero_banner.webp')", backgroundSize: "cover", backgroundPosition: "center" }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/45 to-background" />
       <div className="relative text-center px-6 py-14 max-w-3xl">
@@ -43,7 +43,7 @@ const Index = () => (
 
         {/* Human Treatment → Videos */}
         <Link to="/videos" className="group relative overflow-hidden rounded-md aspect-[4/5] md:aspect-video block">
-          <img src="/images/human_treatment.jpg" alt="Human Treatment" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <img src="/images/human_treatment.webp" alt="Human Treatment" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <p className="text-xs uppercase tracking-widest text-primary mb-1">Surgery & Periodontology</p>
@@ -56,7 +56,7 @@ const Index = () => (
 
         {/* Animal Treatment — dual link card */}
         <div className="group relative overflow-hidden rounded-md aspect-[4/5] md:aspect-video block">
-          <img src="/images/animal_treatment.jpg" alt="Animal Treatment" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <img src="/images/animal_treatment.webp" alt="Animal Treatment" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
           {/* Products badge */}
           <Link to="/animal" className="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-[11px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg hover:bg-primary/80 transition-colors">
@@ -74,7 +74,7 @@ const Index = () => (
 
         {/* Tati the Dog → Videos */}
         <Link to="/videos" className="group relative overflow-hidden rounded-md aspect-[4/5] md:aspect-video block">
-          <img src="/images/tati_dog.jpg" alt="Tati the Dog" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <img src="/images/tati_dog.webp" alt="Tati the Dog" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <p className="text-xs uppercase tracking-widest text-primary mb-1">Case Study</p>

@@ -48,7 +48,7 @@ const Contact = () => {
       </Helmet>
       {/* Hero — compact, no large gap */}
       <section className="relative py-14 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-25" style={{ backgroundImage: "url(/images/contact_hero.jpeg)" }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-25" style={{ backgroundImage: "url(/images/contact_hero.webp)" }} />
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 to-background" />
         <div className="relative z-10 max-w-xl mx-auto">
           <Mail className="mx-auto mb-4 text-primary" size={32} />
