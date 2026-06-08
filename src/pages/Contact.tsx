@@ -24,17 +24,43 @@ const catalog = [
   { id: 17, name: "CORTICOCANCELLOUS BLOCK (EQUINE)", spec: "10×10×10 MM — 2 CC" },
 ];
 
+const INQUIRY_FORM_URL = "https://forms.cloud.microsoft/e/Hws1j3Cvq7?embed=true";
+const ORDER_EMAIL = "information@intissue.com";
+
 const Contact = () => {
   const [searchParams] = useSearchParams();
   const [type, setType] = useState<"inquiry" | "order">(
     searchParams.get("type") === "order" ? "order" : "inquiry"
   );
   const [qty, setQty] = useState<Record<number, string>>({});
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [country, setCountry] = useState("");
+  const [notes, setNotes] = useState("");
+  const [consent, setConsent] = useState(false);
 
   const orderLines = catalog
     .filter((c) => qty[c.id] && Number(qty[c.id]) > 0)
-    .map((c) => `#${c.id} ${c.name} (${c.spec}) × ${qty[c.id]}`)
+    .map((c) => `#${c.id} ${c.name} (${c.spec}) x ${qty[c.id]}`)
     .join("\n");
+
+  const mailtoHref = (() => {
+    const subject = `Product Order – ${name}`;
+    const body = [
+      `Name / Clinic: ${name}`,
+      `Email: ${email}`,
+      country ? `Country: ${country}` : null,
+      "",
+      "ORDER DETAILS:",
+      orderLines || "(no items selected)",
+      notes ? `\nAdditional notes: ${notes}` : null,
+    ]
+      .filter((l) => l !== null)
+      .join("\n");
+    return `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  })();
+
+  const orderValid = name.trim() !== "" && email.trim() !== "" && orderLines !== "" && consent;
 
   const inputCls =
     "border border-border rounded-md px-4 py-2.5 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50";
@@ -46,7 +72,8 @@ const Contact = () => {
         <meta name="description" content="Contact InTissue for product inquiries or bone graft orders. Send us a message and we'll get back to you shortly." />
         <link rel="canonical" href="https://www.intissue.com/contact" />
       </Helmet>
-      {/* Hero — compact, no large gap */}
+
+      {/* Hero */}
       <section className="relative py-14 px-6 text-center overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center opacity-25" style={{ backgroundImage: "url(/images/contact_hero.webp)" }} />
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 to-background" />
@@ -59,59 +86,66 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Form */}
       <section className="pb-20 pt-6 px-6">
-        <div className="max-w-xl mx-auto">
-          <form action="https://formspree.io/f/mgoqedgv" method="POST" className="space-y-5">
+        <div className="max-w-xl mx-auto space-y-5">
 
-            {/* Request type toggle */}
-            <div className="flex flex-col gap-2">
-              <span className="text-sm font-medium">What can we help with?</span>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => setType("inquiry")}
-                  className={`px-4 py-3 rounded-md border text-sm uppercase tracking-wider transition-all ${
-                    type === "inquiry"
-                      ? "border-primary bg-primary/10 text-foreground font-semibold"
-                      : "border-border text-muted-foreground hover:border-foreground/40"
-                  }`}
-                >
-                  General Inquiry
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setType("order")}
-                  className={`px-4 py-3 rounded-md border text-sm uppercase tracking-wider transition-all ${
-                    type === "order"
-                      ? "border-primary bg-primary/10 text-foreground font-semibold"
-                      : "border-border text-muted-foreground hover:border-foreground/40"
-                  }`}
-                >
-                  Product Order
-                </button>
+          {/* Toggle */}
+          <div className="flex flex-col gap-2">
+            <span className="text-sm font-medium">What can we help with?</span>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setType("inquiry")}
+                className={`px-4 py-3 rounded-md border text-sm uppercase tracking-wider transition-all ${
+                  type === "inquiry"
+                    ? "border-primary bg-primary/10 text-foreground font-semibold"
+                    : "border-border text-muted-foreground hover:border-foreground/40"
+                }`}
+              >
+                General Inquiry
+              </button>
+              <button
+                type="button"
+                onClick={() => setType("order")}
+                className={`px-4 py-3 rounded-md border text-sm uppercase tracking-wider transition-all ${
+                  type === "order"
+                    ? "border-primary bg-primary/10 text-foreground font-semibold"
+                    : "border-border text-muted-foreground hover:border-foreground/40"
+                }`}
+              >
+                Product Order
+              </button>
+            </div>
+          </div>
+
+          {/* General Inquiry — MS Forms iframe */}
+          {type === "inquiry" && (
+            <iframe
+              src={INQUIRY_FORM_URL}
+              title="General Inquiry Form"
+              className="w-full rounded-md border border-border"
+              style={{ height: "600px" }}
+              allowFullScreen
+            />
+          )}
+
+          {/* Product Order — mailto */}
+          {type === "order" && (
+            <div className="space-y-5">
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="name" className="text-sm font-medium">Name / Clinic</label>
+                <input id="name" type="text" required placeholder="Your name or clinic" maxLength={120} value={name} onChange={(e) => setName(e.target.value)} className={inputCls} />
               </div>
-            </div>
-
-            <input type="hidden" name="request_type" value={type === "order" ? "PRODUCT ORDER" : "GENERAL INQUIRY"} />
-
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="name" className="text-sm font-medium">Name / Clinic</label>
-              <input id="name" type="text" name="name" required placeholder="Your name or clinic" maxLength={120} className={inputCls} />
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="email" className="text-sm font-medium">Email</label>
-              <input id="email" type="email" name="email" required placeholder="your@email.com" maxLength={200} className={inputCls} />
-            </div>
-
-            {type === "order" && (
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="email" className="text-sm font-medium">Email</label>
+                <input id="email" type="email" required placeholder="your@email.com" maxLength={200} value={email} onChange={(e) => setEmail(e.target.value)} className={inputCls} />
+              </div>
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="country" className="text-sm font-medium">Country</label>
-                <input id="country" type="text" name="country" placeholder="Shipping country" maxLength={100} className={inputCls} />
+                <input id="country" type="text" placeholder="Shipping country" maxLength={100} value={country} onChange={(e) => setCountry(e.target.value)} className={inputCls} />
               </div>
-            )}
 
-            {type === "order" && (
+              {/* Product table */}
               <div className="space-y-2">
                 <span className="text-sm font-medium">Select products &amp; quantities</span>
                 <p className="text-xs text-muted-foreground">Enter the desired quantity next to each catalogue item you wish to order.</p>
@@ -152,40 +186,56 @@ const Contact = () => {
                     <pre className="whitespace-pre-wrap font-mono text-muted-foreground">{orderLines}</pre>
                   </div>
                 )}
-                <input type="hidden" name="order_details" value={orderLines || "(no items selected)"} />
               </div>
-            )}
 
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="message" className="text-sm font-medium">
-                {type === "order" ? "Additional notes" : "Message"}
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required={type === "inquiry"}
-                rows={type === "order" ? 3 : 5}
-                placeholder={type === "order" ? "Delivery preferences, billing details, questions…" : "How can we help you?"}
-                maxLength={2000}
-                className={`${inputCls} resize-none`}
-              />
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="notes" className="text-sm font-medium">Additional notes</label>
+                <textarea
+                  id="notes"
+                  rows={3}
+                  placeholder="Delivery preferences, billing details, questions…"
+                  maxLength={2000}
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  className={`${inputCls} resize-none`}
+                />
+              </div>
+
+              <div className="flex items-start gap-3">
+                <input
+                  id="consent"
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-0.5 shrink-0 accent-primary"
+                />
+                <label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed">
+                  I have read and accept the{" "}
+                  <Link to="/legal" className="underline hover:text-foreground">Privacy Policy</Link>. I consent to my data being processed for the purpose of responding to my enquiry, in accordance with GDPR Art. 6(1)(b)/(f).
+                </label>
+              </div>
+
+              <a
+                href={orderValid ? mailtoHref : undefined}
+                onClick={!orderValid ? (e) => e.preventDefault() : undefined}
+                className={`block w-full text-center px-6 py-3 border text-sm tracking-widest uppercase transition-all duration-300 ${
+                  orderValid
+                    ? "border-primary text-primary hover:bg-primary hover:text-primary-foreground cursor-pointer"
+                    : "border-border text-muted-foreground cursor-not-allowed opacity-50"
+                }`}
+              >
+                Send Order Request
+              </a>
+              {!orderValid && (
+                <p className="text-xs text-muted-foreground text-center">
+                  {!name || !email ? "Fill in name and email. " : ""}
+                  {!orderLines ? "Select at least one product. " : ""}
+                  {!consent ? "Accept the Privacy Policy." : ""}
+                </p>
+              )}
             </div>
+          )}
 
-            <div className="flex items-start gap-3">
-              <input id="consent" type="checkbox" name="consent" required className="mt-0.5 shrink-0 accent-primary" />
-              <label htmlFor="consent" className="text-xs text-muted-foreground leading-relaxed">
-                I have read and accept the{" "}
-                <Link to="/legal" className="underline hover:text-foreground">Privacy Policy</Link>. I consent to my data being processed for the purpose of responding to my enquiry, in accordance with GDPR Art. 6(1)(b)/(f).
-              </label>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full px-6 py-3 border border-primary text-primary text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-            >
-              {type === "order" ? "Send Order Request" : "Send Message"}
-            </button>
-          </form>
         </div>
       </section>
     </Layout>
